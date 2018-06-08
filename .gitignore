@@ -1,0 +1,10 @@
+__pycache__/
+.vscode/
+
+cs224s/
+kaggle/
+tensorflow/
+
+*mat
+*csv
+*pyc
