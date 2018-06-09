@@ -5,6 +5,7 @@ cs224s/
 kaggle/
 tensorflow/
 
+*pkl
 *mat
 *csv
 *pyc
