@@ -1,6 +1,7 @@
 import os
 import pickle
 import numpy as np
+import sklearn.datasets as datasets
 import matplotlib.pyplot as plt
 
 from scipy import io
@@ -14,6 +15,12 @@ _model_path = '_model/'
 _post = '.pkl'
 _kfold = 5
 _seed = 44
+
+def load_iris():
+    return datasets.load_iris()
+
+def load_mnist():
+    return load_mat()
 
 def load_mat(fname='mnist-original.mat'):
     # mnist return dict{'data': (784, 70000), 'label': (1, 70000)}
@@ -38,7 +45,17 @@ def show_digit(arr, label, re_w, re_h, _show=False):
     plt.title(label)
     if _show:
         plt.show()
-    
+
+def plot_x_y(x, y, x_min, x_max, y_min, y_max, kind='b.', label='', loc="lower right", _show=False):
+    plt.plot(x, y, kind, label=label)
+    plt.ylabel("Y")
+    plt.xlabel("X")
+    plt.xlim([x_min, x_max])
+    plt.ylim([y_min, y_max])
+    plt.legend(loc=loc)
+    if _show:
+        plt.show()
+
 def divide(X, Y, need_shuffle=False):
     pct = (_kfold - 1)/_kfold
     def _shuffle(X, Y):
@@ -66,8 +83,9 @@ def load_model(mname):
     with open(_model_path + mname + _post, 'rb') as f:
         return pickle.load(f)
 
-mnist = load_mat(fname='mnist-original.mat')
+mnist = load_mnist()
 X, Y = mnist['data'].T, mnist['label'].T.ravel()
 (x_tr, y_tr), (x_ts, y_ts) = divide(X, Y)
 # g = kFold_div(X, Y)
 # show_digit(X[36000], Y[36000], 28, 28)
+

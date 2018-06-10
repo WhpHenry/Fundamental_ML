@@ -10,18 +10,17 @@ from sklearn.metrics import confusion_matrix
 
 
 class Validation:
-    def __init__(self, model, kfolds=10):
-        self.model = model
+    def __init__(self, kfolds=10):
         self.kfolds = kfolds
     
-    def cross_val(self, x, y, method="predict", scoring='accuracy'):
+    def cross_val(self, model, x, y, method="predict", scoring='accuracy'):
         '''
         method:  e.g. accuracy / decision_fucntion / predict_proba
         scoring: e.g. accuracy / decision_fucntion; more on:
         http://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter
         '''
-        y_pred = cross_val_predict(self.model, x, y, cv=self.kfolds, method=method)
-        y_score = cross_val_score(self.model, x, y, cv=self.kfolds, scoring=scoring)
+        y_pred = cross_val_predict(model, x, y, cv=self.kfolds, method=method)
+        y_score = cross_val_score(model, x, y, cv=self.kfolds, scoring=scoring)
         return y_pred, y_score
     
     def scored(self, y_true, y_pred):
