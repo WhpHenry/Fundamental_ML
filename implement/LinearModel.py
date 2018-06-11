@@ -24,6 +24,17 @@ class LinearModel:
         self.lgsr = LogisticRegression()
         self.softmax = LogisticRegression(multi_class="multinomial",solver="lbfgs", C=10)
 
+    def lgs_demo(self, plt):
+        iris = load_iris()
+        X = iris["data"][:, 3:]
+        y = (iris["target"] == 2)
+        self.lgsr.fit(X, y)
+        X_new = np.linspace(0, 3, 1000).reshape(-1, 1)
+        y_proba = self.lgsr.predict_proba(X_new)
+        plt.plot(X_new, y_proba[:, 1], "g-", label="Iris-Virginica")
+        plt.plot(X_new, y_proba[:, 0], "b--", label="Not Iris-Virginica")
+        plt.show()
+
     def lr_demo(self, r=100, c=1, theta = (4, 3), need_return=False, need_plot=True):
         if (c+1) != len(theta):
             raise Exception('ERROR: columns or theta counts error')
