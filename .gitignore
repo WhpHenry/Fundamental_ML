@@ -5,6 +5,7 @@ cs224s/
 kaggle/
 tensorflow/
 
+demo.py
 test.log
 *pkl
 *mat

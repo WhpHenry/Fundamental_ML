@@ -6,7 +6,7 @@ from sklearn.metrics import roc_curve, roc_auc_score
 from sklearn.metrics import precision_recall_curve
 from sklearn.metrics import precision_score, recall_score, f1_score
 from sklearn.metrics import confusion_matrix
-# from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score
 
 
 class Validation:
@@ -23,6 +23,9 @@ class Validation:
         y_score = cross_val_score(model, x, y, cv=self.kfolds, scoring=scoring)
         return y_pred, y_score
     
+    def acc_score(self, y_real, y_pred):
+        return accuracy_score(y_real, y_pred)
+
     def scored(self, y_true, y_pred):
         conf_mat = confusion_matrix(y_true, y_pred)
         precision = precision_score(y_true, y_pred)

@@ -16,11 +16,19 @@ _post = '.pkl'
 _kfold = 5
 _seed = 44
 
-def load_iris():
-    return datasets.load_iris()
+def load_iris(return_xy=False):
+    iris = datasets.load_iris()
+    if return_xy:
+        X, Y = iris['data'], iris['target']
+        return X, Y
+    return iris
 
-def load_mnist():
-    return load_mat()
+def load_mnist(return_xy=False):
+    mnist = load_mat()
+    if return_xy:
+        X, Y = mnist['data'], mnist['label']
+        return X, Y
+    return mnist
 
 def load_mat(fname='mnist-original.mat'):
     # mnist return dict{'data': (784, 70000), 'label': (1, 70000)}
