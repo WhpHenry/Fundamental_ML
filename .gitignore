@@ -1,6 +1,7 @@
 __pycache__/
 .vscode/
 
+_model/
 _data/
 cs224s/
 kaggle/
