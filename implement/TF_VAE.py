@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 from tensorflow.examples.tutorials.mnist import input_data
 fully_connected =  tf.contrib.layers.fully_connected 
 
+# ref: https://arxiv.org/abs/1312.6114
+
 def main():
     n_ipts = 28 * 28
     n_opts = n_ipts
